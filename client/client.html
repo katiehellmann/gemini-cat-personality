@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Quiz</title>
+    <link href="/style.css" rel="stylesheet" />
+</head>
+<!-- <nav class="w-5% sticky top-0"></nav> -->
+<body class="flex flex-col items-center justify-center bg-pink-300">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-2/3">
+        <h1 class="text-4xl font-bold mb-4 p-2">Personality Quiz</h1>
+        <form id="quizForm" class="m-2">
+            <div>
+                <label class="block text-xl">You're in a room full of people, what do you do?
+                </label>
+                <br>
+                <div>
+                    <input type="radio" name="q1" value="Demand attention by meowing loudly" class="mr-2"> Demand attention by meowing loudly.
+                    <br><input type="radio" name="q1" value="Get comfy on a chair and chill" class="mr-2"> Get comfy on a chair and chill.
+                    <br><input type="radio" name="q1" value="Explore and investigate the space" class="mr-2"> Explore and investigate the space!
+                    <br><input type="radio" name="q1" value="Rub up against everyone to let them know you're friendly" class="mr-2"> Rub up against everyone to let them know you're friendly!
+                </div>
+                <br>                 <br>
+            </div>
+            <div>
+                <label class="block text-xl">What do you enjoy the most in your free time?
+                </label>
+                <br>
+                <div>
+                    <input type="radio" name="q2" value="Play with the new toy your human got you" class="mr-2">Play with the new toy your human got you.
+                    <br><input type="radio" name="q2" value="Reflect on your life and look out the window" class="mr-2"> Reflect on your life and look out the window.
+                    <br><input type="radio" name="q2" value="Explore and investigate the space" class="mr-2"> Go on a spontaneous adventure outside!
+                    <br><input type="radio" name="q2" value="Rub up against everyone to let them know you're friendly" class="mr-2"> Find yourself a snack!
+                </div>
+                <br>                <br>
+            </div>
+            <div>
+                <label class="block text-xl">You're given an empty box. What's your next move?
+                    <br>
+                </label>
+                <div>
+                    <input type="radio" name="q3" value="Jump in immediately" class="mr-2">Jump in immediately!
+                    <br><input type="radio" name="q3" value="Look at the box for a minute and then go take a nap elsewhere" class="mr-2">Look at the box for a minute- and then go take a nap elsewhere.
+                    <br><input type="radio" name="q3" value="Inspect it and think about all the games you can play now" class="mr-2">Inspect it and think about all the games you can play now!
+                    <br><input type="radio" name="q3" value="Knock the box over! Yeah!" class="mr-2">Knock the box over!! Yeah!!
+                </div>
+                <br>                 <br>
+            </div>
+            <div>
+                <label class="block text-xl">You discover your human has left and you're all alone. How do you react?
+                </label>
+                <br>
+                <div>
+                    <input type="radio" name="q4" value="Start knocking things off the counter That'll show em" class="mr-2">Start knocking things off the counter. That'll show 'em!
+                    <br><input type="radio" name="q4" value="Settle down and take a nap. They'll be back" class="mr-2">Settle down and take a nap. They'll be back.
+                    <br><input type="radio" name="q4" value="Meow loudly at the door until they come home They will hear me and come back" class="mr-2">Meow loudly at the door until they come home. They will hear me and come back!
+                    <br><input type="radio" name="q4" value="Go inside the cabinets and try to eat all the food inside before they reappear. " class="mr-2">Go inside the cabinets and try to eat all the food inside before they reappear. 
+                </div>
+                <br>                <br>
+            </div>
+            <div>
+                <label class="block text-xl">You're trying to get some alone time, but your human keeps bothering you. What do you do?
+                </label>
+                <br>
+                <div>
+                    <input type="radio" name="q5" value="Try to distract them by leading them into a different room" class="mr-2">Try to distract them by leading them into a different room.
+                    <br><input type="radio" name="q5" value="Look at them with distain and go to your favorite hiding spot." class="mr-2">Look at them with distain and go to your favorite hiding spot.
+                    <br><input type="radio" name="q5" value="Tolerate their presence, I guess" class="mr-2">Tolerate their presence, I guess.
+                    <br><input type="radio" name="q5" value="Act cute and purr, they cant resist me" class="mr-2">Act cute and purr, they cant resist me!!
+                </div>
+                <br>                <br>
+            </div>
+            <div>
+                <label class="block text-xl">What do you think about climbing trees?
+                </label>
+                <br>
+                <div>
+                    <input type="radio" name="q6" value="Bring on the challenge" class="mr-2">Bring on the challenge!
+                    <br><input type="radio" name="q6" value="Let me find a secure spot- safety first" class="mr-2">Let me find a secure spot- safety first!
+                    <br><input type="radio" name="q6" value="My human wouldn't want me up there" class="mr-2">My human wouldn't want me up there.
+                    <br><input type="radio" name="q6" value="I prefer the ground" class="mr-2">I prefer the ground.
+                </div>
+                <br>                <br>
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+
+    <div id="result">
+    </div>
+    </div>
+    
+    <script>
+        document.getElementById("quizForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+    
+            // collect selected answers
+            const selectedAnswers = Array.from(document.querySelectorAll("input[type=radio]:checked"));
+            
+            // everything is answered
+            if (selectedAnswers.length < 6) {
+                document.getElementById("result").innerHTML = `<p class="text-red-500">Please answer all questions before submitting.</p>`;
+                return;
+            }
+    
+            const answers = selectedAnswers.map(input => input.value);
+            console.log(answers);
+            try {
+                const response = await fetch("/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ answers })
+                });
+    
+                if (!response.ok) throw new Error("Failed to fetch results.");
+                const data = await response.json();
+                document.getElementById("result").innerHTML = `<p class="text-lg font-bold mt-4">Your personality type is: <span class="text-blue-600">${data.result}</span></p>`;
+            } catch (error) {
+                document.getElementById("result").innerHTML = `<p class="text-red-500">Error submitting quiz. Please try again later.</p>`;
+            }
+        });
+    </script>
+    
+</body>
+</html>
