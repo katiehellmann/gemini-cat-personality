@@ -67,11 +67,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="bg-blue-300 text-purple-900 px-4 py-2 rounded">Submit</button>
+            <button type="submit" class="bg-blue-300 hover:bg-sky-400 text-purple-900 px-4 py-2 rounded">Submit</button>
         </form>
-
-    <div id="result" class="bg-amber-50 p-4 rounded-lg">
-        <p>Complete the Quiz to see your result!</p>
+        <br>
+    <div id="result">
     </div>
 </div>
 <footer class="bg-white w-full items-center justify-center">
@@ -103,10 +102,12 @@
                 if (!response.ok) throw new Error("Failed to fetch results.");
                 const data = await response.json();
                 document.getElementById("result").innerHTML = `
+                <div class="p-4 rounded-lg bg-amber-50">
                     <p class="text-lg font-bold mt-4">Your personality type is: 
                         <span class="text-purple-800">${data.result}</span>
                     </p>
                     <img src="${data.imageUrl}" alt="Personality Image" class="mt-4 w-1/3 rounded-lg"/>
+                     </div>
                 `;
             } catch (error) {
                 document.getElementById("result").innerHTML = `<p class="text-red-500">Error submitting quiz. Please try again later.</p>`;

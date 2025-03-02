@@ -8,6 +8,7 @@
       "Courier New", monospace;
     --color-red-500: oklch(0.637 0.237 25.331);
     --color-amber-50: oklch(0.987 0.022 95.277);
+    --color-sky-400: oklch(0.746 0.16 232.661);
     --color-blue-300: oklch(0.809 0.105 251.813);
     --color-purple-800: oklch(0.438 0.218 303.724);
     --color-purple-900: oklch(0.381 0.176 304.987);
@@ -288,6 +289,13 @@
   }
   .text-red-500 {
     color: var(--color-red-500);
+  }
+  .hover\:bg-sky-400 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-sky-400);
+      }
+    }
   }
 }
 @property --tw-space-y-reverse {
