@@ -34,7 +34,7 @@ async function runAI(answersObject, key) {
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const prompt =
-    `you're the deciding factor in a cat personality quiz.  Sort the user into one of the following personality types and give a cute short blurb about their personality :(Dismissive Diva) 
+    `you're the deciding factor in a cat personality quiz.  Sort the user into one of the following personality types and give a cute short blurb about their personality starting the sentence with "You are" and omit "based on your answers" :(Dismissive Diva) 
 (Trouble Maker )
 (Snacker)
 (Cuddle Monster) 
