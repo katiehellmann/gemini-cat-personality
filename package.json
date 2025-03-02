@@ -14,9 +14,7 @@
     "eslint-plugin-import": "^2.31.0"
   },
   "dependencies": {
-    "type": "module",
     "@google/generative-ai": "^0.22.0",
-    "type": "commonjs",
     "@preline/carousel": "^2.5.2",
     "@tailwindcss/cli": "^4.0.9",
     "autoprefixer": "^10.4.20",

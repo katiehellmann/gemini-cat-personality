@@ -2,7 +2,7 @@
 const http = require("http");
 const query = require("querystring");
 const htmlHandler = require("./htmlResponses.js");
-geminiHandler = require("./gemini.js");
+geminiHandler = require("./gemini.mjs");
 const express = require("express");
 const path = require("path");
 const app = express();
